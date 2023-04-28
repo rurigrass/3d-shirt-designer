@@ -1,5 +1,5 @@
 const Tab = () => {
-    return <div></div>
+    return <div>Tab</div>
 }
 
 export default Tab

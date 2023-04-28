@@ -51,7 +51,6 @@ const Home = () => {
           </motion.div>
         </motion.section>
       )}
-      Home
     </AnimatePresence>
   );
 };
