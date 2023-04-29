@@ -1,5 +1,5 @@
 const FilePicker = () => {
-    return <div>hi</div>
+    return <div>file</div>
     
 }
 
