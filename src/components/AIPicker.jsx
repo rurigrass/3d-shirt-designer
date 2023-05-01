@@ -1,14 +1,21 @@
 import CustomButton from "./CustomButton";
 
 const AIPicker = ({ prompt, setPrompt, generatingImg, handleSubmit }) => {
+  const textAreaDisabled = () => alert("AI is disabled!");
   return (
-    <div className="aipicker-container">
+    <div
+      className="aipicker-container"
+      onClick={() => {
+        alert("AI is disabled!");
+      }}
+    >
       <textarea
         placeholder="Ask AI..."
         rows={5}
         value={prompt}
         onChange={(e) => setPrompt(e.target.value)}
         className="aipicker-textarea"
+        disabled="true"
       />
       <div className="flex flex-wrap gap-3">
         {generatingImg ? (
