@@ -16,7 +16,7 @@ const Shirt = () => {
     easing.dampC(materials.lambert1.color, snap.color, 0.25, delta)
   );
 
-  const stateString = JSON.stringify(snap)
+  const stateString = JSON.stringify(snap);
 
   return (
     <group key={stateString}>
@@ -35,6 +35,7 @@ const Shirt = () => {
             map={fullTexture}
           />
         )}
+
         {snap.isLogoTexture && (
           <Decal
             position={[0, 0.04, 0.15]}

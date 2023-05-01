@@ -8,7 +8,7 @@ function App() {
     <main className="app transition-all ease-in">
       {/* <h1 className="head-text">Ela malaka</h1> */}
       <Home />
-      {/* <Canvas /> */}
+      <Canvas />
       <Customizer />
     </main>
   );

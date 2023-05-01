@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSnapshot } from "valtio";
 
@@ -11,24 +11,26 @@ import { fadeAnimation, slideAnimation } from "../config/motion";
 import {
   AIPicker,
   ColorPicker,
+  CustomButton,
   FilePicker,
   Tab,
-  CustomButton,
 } from "../components";
-import CanvasModel from "../canvas";
 
 const Customizer = () => {
   const snap = useSnapshot(state);
+
   const [file, setFile] = useState("");
+
   const [prompt, setPrompt] = useState("");
   const [generatingImg, setGeneratingImg] = useState(false);
+
   const [activeEditorTab, setActiveEditorTab] = useState("");
   const [activeFilterTab, setActiveFilterTab] = useState({
     logoShirt: true,
     stylishShirt: false,
   });
 
-  // show tab content depending on the active tab
+  // show tab content depending on the activeTab
   const generateTabContent = () => {
     switch (activeEditorTab) {
       case "colorpicker":
@@ -51,10 +53,11 @@ const Customizer = () => {
 
   const handleSubmit = async (type) => {
     if (!prompt) return alert("Please enter a prompt");
+
     try {
-      //call out backend to generate ai image
       setGeneratingImg(true);
-      const response = await fetch("localhost:8080/api/v1/dalle", {
+
+      const response = await fetch("http://localhost:8080/api/v1/dalle", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -63,8 +66,10 @@ const Customizer = () => {
           prompt,
         }),
       });
-      const data = await response.JSON();
-      handleDecals(type, `data:image/png;base64,${data.photo}`);
+
+      const data = await response.json();
+
+      handleDecals(type, `data:image/png;base64${data.photo}`);
     } catch (error) {
       alert(error);
     } finally {
@@ -129,11 +134,10 @@ const Customizer = () => {
                   <Tab
                     key={tab.name}
                     tab={tab}
-                    handleClick={() => {
-                      setActiveEditorTab(tab.name);
-                    }}
+                    handleClick={() => setActiveEditorTab(tab.name)}
                   />
                 ))}
+
                 {generateTabContent()}
               </div>
             </div>
@@ -167,7 +171,6 @@ const Customizer = () => {
           </motion.div>
         </>
       )}
-      <CanvasModel />
     </AnimatePresence>
   );
 };
