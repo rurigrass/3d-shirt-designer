@@ -49,7 +49,6 @@ const Customizer = () => {
 
   const handleSubmit = async (type) => {
     if(!prompt) return alert("Please enter a prompt");
-    if (prompt) return alert("Sorry but AI is disabled rn")
 
     try {
       setGeneratingImg(true);
